@@ -11,6 +11,10 @@ config :url_shortener,
   namespace: URLShortener,
   ecto_repos: [URLShortener.Repo]
 
+config :url_shortener, URLShortener.Repo,
+  migration_primary_key: [name: :id, type: :binary_id],
+  migration_timestamps: [type: :utc_datetime_usec]
+
 # Configures the endpoint
 config :url_shortener, URLShortenerWeb.Endpoint,
   url: [host: "localhost"],

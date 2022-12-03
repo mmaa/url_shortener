@@ -1,0 +1,19 @@
+<.header>
+  Stats
+  <:actions>
+    <.link href={~p"/"}>
+      <.button>Shorten a URL</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="links" rows={@links} row_click={&JS.navigate(&1.url)}>
+  <:col :let={link} label="URL"><%= link.url %></:col>
+  <:col :let={link} label="Slug"><%= link.slug %></:col>
+  <:col :let={link} label="Hits"><%= link.hits %></:col>
+  <:action :let={link}>
+    <.link href={~p"/#{link}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

@@ -20,6 +20,7 @@ defmodule URLShortenerWeb.Router do
     get "/", LinkController, :new
     post "/", LinkController, :create
     get "/stats", LinkController, :index
+    get "/download", LinkController, :download
     get "/:slug", LinkController, :show
     delete "/:id", LinkController, :delete
   end

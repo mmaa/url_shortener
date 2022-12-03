@@ -34,6 +34,12 @@ defmodule URLShortener.Links.Link do
       String.match?(slug, ~r/[^a-z0-9]/i) ->
         generate_slug(length)
 
+      slug == "download" ->
+        generate_slug(length)
+
+      slug == "stats" ->
+        generate_slug(length)
+
       true ->
         slug
     end

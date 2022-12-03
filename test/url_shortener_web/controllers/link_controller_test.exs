@@ -13,6 +13,14 @@ defmodule URLShortenerWeb.LinkControllerTest do
     end
   end
 
+  describe "download" do
+    test "downloads a csv", %{conn: conn} do
+      conn = get(conn, ~p"/download")
+      assert response(conn, 200)
+      assert response_content_type(conn, :csv)
+    end
+  end
+
   describe "new link" do
     test "renders form", %{conn: conn} do
       conn = get(conn, ~p"/")

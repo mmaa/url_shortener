@@ -39,6 +39,11 @@ defmodule URLShortener.LinksTest do
       assert {:error, %Ecto.Changeset{}} = Links.create_link(@invalid_attrs)
     end
 
+    test "generate_csv/0 returns a CSV string of all links" do
+      link = link_fixture()
+      assert Links.generate_csv() == "URL,Slug,Hits\r\nhttp://www.example.com,#{link.slug},0\r\n"
+    end
+
     test "delete_link/1 deletes the link" do
       link = link_fixture()
       assert {:ok, %Link{}} = Links.delete_link(link)

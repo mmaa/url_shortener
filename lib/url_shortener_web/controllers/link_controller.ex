@@ -9,6 +9,11 @@ defmodule URLShortenerWeb.LinkController do
     render(conn, :index, links: links)
   end
 
+  def download(conn, _params) do
+    csv = Links.generate_csv()
+    send_download(conn, {:binary, csv}, filename: "stats.csv")
+  end
+
   def new(conn, _params) do
     changeset = Links.change_link(%Link{})
     render(conn, :new, changeset: changeset)

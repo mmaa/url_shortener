@@ -41,7 +41,9 @@ defmodule URLShortener.LinksTest do
 
     test "generate_csv/0 returns a CSV string of all links" do
       link = link_fixture()
-      assert Links.generate_csv() == "URL,Slug,Hits\r\nhttp://www.example.com,#{link.slug},0\r\n"
+
+      assert Links.generate_csv() ==
+               "Original URL,Short URL,Hits\r\nhttp://www.example.com,#{link.slug},0\r\n"
     end
 
     test "delete_link/1 deletes the link" do

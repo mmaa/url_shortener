@@ -1,3 +1,7 @@
+<div :if={short_url = Phoenix.Flash.get(@flash, :short_url)}>
+  <p>Your new short URL is:</p>
+  <p class="font-semibold"><.link href={short_url}><%= short_url %></.link></p>
+</div>
 <.simple_form :let={f} for={@changeset} action={~p"/"}>
   <.error :if={@changeset.action}>
     Oops, something went wrong! Please check the errors below.

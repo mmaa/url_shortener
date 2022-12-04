@@ -23,11 +23,9 @@ defmodule URLShortenerWeb.LinkController do
     case Links.create_link(link_params) do
       {:ok, link} ->
         conn
-        |> put_flash(
-          :info,
-          "Shortened link '#{link.slug}' for '#{link.url}' created successfully."
-        )
-        |> redirect(to: ~p"/stats")
+        |> put_flash(:info, "Short URL created successfully.")
+        |> put_flash(:short_url, URLShortenerWeb.Endpoint.url() <> "/" <> link.slug)
+        |> redirect(to: ~p"/")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)

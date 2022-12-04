@@ -39,7 +39,7 @@ defmodule URLShortener.Links do
   def generate_csv do
     list_links()
     |> Enum.map(fn link -> Map.take(link, [:url, :slug, :hits]) end)
-    |> CSV.encode(headers: [url: "URL", slug: "Slug", hits: "Hits"])
+    |> CSV.encode(headers: [url: "Original URL", slug: "Short URL", hits: "Hits"])
     |> Enum.to_list()
     |> to_string()
   end

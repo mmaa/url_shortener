@@ -7,13 +7,19 @@
   </:actions>
 </.header>
 
-<.table id="links" rows={@links} row_click={&JS.navigate(&1.url)}>
-  <:col :let={link} label="URL"><%= link.url %></:col>
-  <:col :let={link} label="Slug"><%= link.slug %></:col>
-  <:col :let={link} label="Hits"><%= link.hits %></:col>
-  <:action :let={link}>
-    <.link href={~p"/#{link}"} method="delete" data-confirm="Are you sure?">
-      Delete
+<.table id="links" rows={@links}>
+  <:col :let={link} label="Original URL">
+    <.link href={link.url}>
+      <%= link.url %>
     </.link>
-  </:action>
+  </:col>
+  <:col :let={link} label="Short URL">
+    <%= URLShortenerWeb.Endpoint.url() <> "/" <> link.slug %>
+  </:col>
+  <:col :let={link} label="Hits"><%= link.hits %></:col>
+  <:col :let={link}>
+    <.link href={~p"/#{link}"} method="delete" data-confirm="Are you sure?">
+      <Heroicons.trash mini class="h-4 w-4" />
+    </.link>
+  </:col>
 </.table>

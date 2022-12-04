@@ -31,7 +31,7 @@ defmodule URLShortenerWeb.LinkControllerTest do
   describe "create link" do
     test "redirects to stats when data is valid", %{conn: conn} do
       conn = post(conn, ~p"/", link: @create_attrs)
-      assert redirected_to(conn) == ~p"/stats"
+      assert redirected_to(conn) == ~p"/"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do

@@ -21,7 +21,7 @@ defmodule URLShortener.Links do
   def record_hit!(link) do
     Link
     |> where(id: ^link.id)
-    |> Repo.update_all(inc: [hits: 1])
+    |> Repo.update_all(inc: [hits: 1], set: [updated_at: DateTime.utc_now()])
   end
 
   def create_link(attrs \\ %{}) do

@@ -24,7 +24,9 @@ defmodule URLShortener.LinksTest do
     test "record_hit!/1 increments hits on the link" do
       link = link_fixture()
       Links.record_hit!(link)
-      assert Repo.reload(link).hits == 1
+      link = Repo.reload(link)
+      assert link.hits == 1
+      assert link.updated_at > link.inserted_at
     end
 
     test "create_link/1 with valid data creates a link" do
